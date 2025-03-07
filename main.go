@@ -1,9 +1,7 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"os"
 )
 
 func main() {
@@ -15,19 +13,16 @@ func main() {
 		fmt.Println("1 - cash withdrawal")
 		fmt.Println("2 - exit")
 
-		readOption := bufio.NewReader(os.Stdin)
-		option, _ := readOption.ReadString('\n')
+		var option int
+		fmt.Scan(&option)
 		switch option {
-		case "1":
-			reader := bufio.NewReader(os.Stdin)
-			requestedAmount, _ := reader.ReadString('\n')
-			fmt.Println("Requested Amount is", requestedAmount)
+		case 1:
 			fmt.Println("Available baknotes: ", banknotes)
-		case "2":
+		case 2:
 			return
 		default:
 			fmt.Println("No such option exists")
+			fmt.Println(option)
 		}
-
 	}
 }
