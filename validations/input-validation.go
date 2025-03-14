@@ -5,7 +5,7 @@ import (
 	"math"
 	"strconv"
 
-	"com.atm/demominationOperations"
+	"com.atm/atmOperations"
 )
 
 func UserInputValidation(userInput string, denominations []int) {
@@ -14,6 +14,6 @@ func UserInputValidation(userInput string, denominations []int) {
 		fmt.Println("Input error. Plese, input a number value.")
 	} else if math.Mod(float64(withdrawalAmountToInt), 5) != 0 {
 		fmt.Println("Incorrect amount. Available denominations:")
-		demominationOperations.PrintAvailableDenominations(denominations)
+		atmOperations.PrintAvailableDenominations(denominations)
 	}
 }

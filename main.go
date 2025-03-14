@@ -8,16 +8,9 @@ import (
 )
 
 func main() {
-
-	atmInit.AtmInit(atmInit.Banknotes)
-	denominations := atmInit.MakeSliceOfAvailableDenominations(atmInit.Banknotes)
 	for {
-		fmt.Println("Enter the withdrawal amount: ")
-		fmt.Scanln(&atmInit.WithdrawalAmount)
-		validations.UserInputValidation(atmInit.WithdrawalAmount, denominations)
+		atmInit.AtmInit()
+		fmt.Scanln(atmInit.GetWithdrawalAmount())
+		validations.UserInputValidation(*atmInit.GetWithdrawalAmount(), atmInit.GetDenominations())
 	}
 }
-
-// func cashWithdrawal(amount int) map[int]int {
-
-// }

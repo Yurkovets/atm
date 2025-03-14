@@ -1,4 +1,4 @@
-package demominationOperations
+package atmOperations
 
 import (
 	"fmt"
