@@ -1,6 +1,9 @@
 package atmInit
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+)
 
 func AtmInit() {
 	banknotes[5] = 20
@@ -20,5 +23,8 @@ func makeSliceOfAvailableDenominations(banknotes map[int]int) []int {
 			denominations = append(denominations, denomination)
 		}
 	}
+	sort.Slice(denominations, func(i, j int) bool {
+		return denominations[i] < denominations[j]
+	})
 	return denominations
 }
