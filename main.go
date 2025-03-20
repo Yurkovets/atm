@@ -12,7 +12,6 @@ func main() {
 
 	atmInit.AtmInit()
 	var withdrawalAmount string = ""
-
 	for {
 		banknotes := atmInit.GetBanknotes()
 		denominations := atmInit.GetDenominations()
@@ -20,8 +19,14 @@ func main() {
 		fmt.Println("Enter the withdrawal amount: ")
 		fmt.Scanln(&withdrawalAmount)
 
-		validations.UserInputValidation(withdrawalAmount, denominations)
-		cash := atmOperations.CashWithdrawal(withdrawalAmount, denominations, banknotes)
+		err := validations.UserInputValidation(withdrawalAmount, denominations)
+		if err != nil {
+			continue
+		}
+		cash, err := atmOperations.CashWithdrawal(withdrawalAmount, denominations, banknotes)
+		if err != nil {
+			continue
+		}
 		fmt.Println(cash)
 	}
 }

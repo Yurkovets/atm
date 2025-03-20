@@ -7,8 +7,11 @@ func GetBanknotes() map[int]int {
 	return banknotes
 }
 
-func ChangeBanknotesAmount(denomination int, amount int) {
-	banknotes[denomination] = amount
+func ChangeBanknotesAmount(cashIssued map[int]int) {
+
+	for denomination, amount := range cashIssued {
+		banknotes[denomination] -= amount
+	}
 }
 
 func GetDenominations() []int {
