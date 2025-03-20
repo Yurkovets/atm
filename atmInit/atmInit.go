@@ -1,7 +1,6 @@
 package atmInit
 
 import (
-	"fmt"
 	"sort"
 )
 
@@ -12,8 +11,6 @@ func AtmInit() {
 	banknotes[200] = 15
 	banknotes[500] = 10
 	banknotes[1000] = 5
-
-	fmt.Println("Enter the withdrawal amount: ")
 }
 
 func makeSliceOfAvailableDenominations(banknotes map[int]int) []int {

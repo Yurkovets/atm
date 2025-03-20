@@ -9,11 +9,19 @@ import (
 )
 
 func main() {
+
+	atmInit.AtmInit()
+	var withdrawalAmount string = ""
+
 	for {
-		atmInit.AtmInit()
-		fmt.Scanln(atmInit.GetWithdrawalAmount())
-		validations.UserInputValidation(*atmInit.GetWithdrawalAmount(), atmInit.GetDenominations())
-		cash := atmOperations.CashWithdrawal(*atmInit.GetWithdrawalAmount(), atmInit.GetDenominations(), atmInit.GetBanknotes())
+		banknotes := atmInit.GetBanknotes()
+		denominations := atmInit.GetDenominations()
+
+		fmt.Println("Enter the withdrawal amount: ")
+		fmt.Scanln(&withdrawalAmount)
+
+		validations.UserInputValidation(withdrawalAmount, denominations)
+		cash := atmOperations.CashWithdrawal(withdrawalAmount, denominations, banknotes)
 		fmt.Println(cash)
 	}
 }
