@@ -1,16 +1,20 @@
-package atmOperations
+package atm
 
 import (
 	"errors"
 	"fmt"
 	"strconv"
-
-	"com.atm/atmInit"
 )
 
-func CashWithdrawal(amount string, denominations []int, banknotes map[int]int) (map[int]int, error) {
+func Withdrawal(amount string) (map[int]int, error) {
+	err := validateAmount(amount)
+	if err != nil {
+		return nil, err
+	}
 	cash := make(map[int]int, 6)
 	var banknotesAmount int
+	denominations := denominations()
+	banknotes := getBanknotes()
 	amountToInt, err := strconv.Atoi(amount)
 	if err == nil {
 		for i := len(denominations) - 1; i >= 0; i-- {
@@ -28,7 +32,7 @@ func CashWithdrawal(amount string, denominations []int, banknotes map[int]int) (
 			fmt.Println("Insufficient funds in the ATM. Input other amount.")
 			return nil, errors.New("insufficient funds in the ATM")
 		}
-		atmInit.ChangeBanknotesAmount(cash)
+		changeBanknotesAmount(cash)
 	} else {
 		fmt.Println(err)
 	}

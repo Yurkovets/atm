@@ -3,27 +3,16 @@ package main
 import (
 	"fmt"
 
-	"com.atm/atmInit"
-	"com.atm/atmOperations"
-	"com.atm/validations"
+	"github.com/Yurkovets/atm/atm"
 )
 
 func main() {
-
-	atmInit.AtmInit()
 	var withdrawalAmount string = ""
 	for {
-		banknotes := atmInit.GetBanknotes()
-		denominations := atmInit.GetDenominations()
-
 		fmt.Println("Enter the withdrawal amount: ")
 		fmt.Scanln(&withdrawalAmount)
 
-		err := validations.UserInputValidation(withdrawalAmount, denominations)
-		if err != nil {
-			continue
-		}
-		cash, err := atmOperations.CashWithdrawal(withdrawalAmount, denominations, banknotes)
+		cash, err := atm.Withdrawal(withdrawalAmount)
 		if err != nil {
 			continue
 		}

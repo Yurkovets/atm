@@ -1,11 +1,11 @@
-package atmOperations
+package atm
 
 import (
 	"fmt"
 	"slices"
 )
 
-func PrintAvailableDenominations(denominations []int) {
+func printAvailableDenominations(denominations []int) {
 	slices.Sort(denominations)
 	for _, denomination := range denominations {
 		fmt.Println(denomination)
