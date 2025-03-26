@@ -1,13 +1,16 @@
 package atm
 
 import (
-	"fmt"
 	"slices"
+	"strconv"
 )
 
-func printAvailableDenominations(denominations []int) {
+func printAvailableDenominations(denominations []int) string {
 	slices.Sort(denominations)
+	var printedDenominations string
 	for _, denomination := range denominations {
-		fmt.Println(denomination)
+		printedDenominations += "\n" + strconv.Itoa(denomination)
 	}
+
+	return printedDenominations
 }

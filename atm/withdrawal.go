@@ -2,39 +2,39 @@ package atm
 
 import (
 	"errors"
-	"fmt"
-	"strconv"
 )
 
-func Withdrawal(amount string) (map[int]int, error) {
+func Withdrawal(amount int) (map[int]int, error) {
 	err := validateAmount(amount)
 	if err != nil {
 		return nil, err
 	}
-	cash := make(map[int]int, 6)
-	var banknotesAmount int
+
 	denominations := denominations()
 	banknotes := getBanknotes()
-	amountToInt, err := strconv.Atoi(amount)
-	if err == nil {
-		for i := len(denominations) - 1; i >= 0; i-- {
-			banknotesAmount = banknotes[denominations[i]]
-			if amountToInt/denominations[i] != 0 {
-				if banknotesAmount >= amountToInt/denominations[i] {
-					cash[denominations[i]] = amountToInt / denominations[i]
-				} else {
-					cash[denominations[i]] = banknotesAmount
-				}
-				amountToInt = amountToInt - denominations[i]*cash[denominations[i]]
-			}
+	cash := make(map[int]int)
+
+	for i := len(denominations) - 1; i >= 0; i-- {
+		denomination := denominations[i]
+		amountToDenom := amount / denomination
+		if amountToDenom == 0 {
+			continue
 		}
-		if amountToInt != 0 {
-			fmt.Println("Insufficient funds in the ATM. Input other amount.")
-			return nil, errors.New("insufficient funds in the ATM")
+
+		banknotesAmount := banknotes[denomination]
+		if banknotesAmount >= amountToDenom {
+			cash[denomination] = amountToDenom
+		} else {
+			cash[denomination] = banknotesAmount
 		}
-		changeBanknotesAmount(cash)
-	} else {
-		fmt.Println(err)
+		amount = amount - denomination*cash[denomination]
 	}
+
+	if amount != 0 {
+		return nil, errors.New("Insufficient funds in the ATM. Input other amount.")
+	}
+
+	changeBanknotesAmount(cash)
+
 	return cash, nil
 }
