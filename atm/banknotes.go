@@ -1,6 +1,10 @@
 package atm
 
-import "sort"
+import (
+	"slices"
+	"sort"
+	"strconv"
+)
 
 var banknotes = map[int]int{
 	5:    20,
@@ -32,4 +36,14 @@ func denominations() []int {
 		return denominations[i] < denominations[j]
 	})
 	return denominations
+}
+
+func getDenominationsString(denominations []int) string {
+	slices.Sort(denominations)
+	var printedDenominations string
+	for _, denomination := range denominations {
+		printedDenominations += "\n" + strconv.Itoa(denomination)
+	}
+
+	return printedDenominations
 }

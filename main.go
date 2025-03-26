@@ -8,18 +8,18 @@ import (
 )
 
 func main() {
-	var withdrawalAmount string = ""
+	var input string = ""
 	for {
 		fmt.Println("Enter the withdrawal amount: ")
-		fmt.Scanln(&withdrawalAmount)
+		fmt.Scanln(&input)
 
-		withdrawalAmountToInt, err := strconv.Atoi(withdrawalAmount)
+		withdrawalAmount, err := strconv.Atoi(input)
 		if err != nil {
 			fmt.Println("Please, check your input is correct. Only number values are valid.")
 			continue
 		}
 
-		cash, err := atm.Withdrawal(withdrawalAmountToInt)
+		cash, err := atm.Withdrawal(withdrawalAmount)
 		if err != nil {
 			fmt.Println(err)
 			continue

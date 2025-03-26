@@ -15,7 +15,7 @@ func validateAmount(withdrawalAmount int) error {
 	}
 
 	if math.Mod(float64(withdrawalAmount), 5) != 0 {
-		return errors.New("Incorrect amount. Available denominations:" + printAvailableDenominations(denominations()))
+		return errors.New("Incorrect amount. Available denominations:" + getDenominationsString(denominations()))
 	}
 
 	return nil
