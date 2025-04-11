@@ -13,3 +13,9 @@ func newAtm(banknotes map[int]int) *atm {
 func (a *atm) getBanknotes() map[int]int {
 	return a.banknotes
 }
+
+func (a *atm) changeBanknotesAmount(cashIssued map[int]int) {
+	for denomination, amount := range cashIssued {
+		a.banknotes[denomination] -= amount
+	}
+}

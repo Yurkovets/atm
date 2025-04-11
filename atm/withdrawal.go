@@ -35,7 +35,7 @@ func Withdrawal(amount int) (map[int]int, error) {
 		return nil, errors.New("Insufficient funds in the ATM. Input other amount.")
 	}
 
-	changeBanknotesAmount(cash)
+	atm.changeBanknotesAmount(cash)
 
 	return cash, nil
 }

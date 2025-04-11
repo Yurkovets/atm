@@ -15,12 +15,6 @@ var banknotes = map[int]int{
 	1000: 5,
 }
 
-func changeBanknotesAmount(cashIssued map[int]int) {
-	for denomination, amount := range cashIssued {
-		banknotes[denomination] -= amount
-	}
-}
-
 func denominations() []int {
 	var denominations []int
 	for denomination, amount := range banknotes {
