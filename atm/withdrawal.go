@@ -11,7 +11,7 @@ func Withdrawal(amount int) (map[int]int, error) {
 	}
 
 	denominations := denominations()
-	banknotes := getBanknotes()
+	banknotes := getBanknotes().Banknotes
 	cash := make(map[int]int)
 
 	for i := len(denominations) - 1; i >= 0; i-- {

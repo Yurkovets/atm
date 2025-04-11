@@ -15,8 +15,8 @@ var banknotes = map[int]int{
 	1000: 5,
 }
 
-func getBanknotes() map[int]int {
-	return banknotes
+func getBanknotes() *Atm {
+	return NewAtm(banknotes)
 }
 
 func changeBanknotesAmount(cashIssued map[int]int) {
