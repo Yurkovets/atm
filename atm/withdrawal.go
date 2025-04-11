@@ -10,8 +10,9 @@ func Withdrawal(amount int) (map[int]int, error) {
 		return nil, err
 	}
 
+	atm := newAtm(banknotes)
 	denominations := denominations()
-	banknotes := getBanknotes().Banknotes
+	banknotes := atm.getBanknotes()
 	cash := make(map[int]int)
 
 	for i := len(denominations) - 1; i >= 0; i-- {

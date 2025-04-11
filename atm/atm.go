@@ -1,11 +1,15 @@
 package atm
 
-type Atm struct {
-	Banknotes map[int]int
+type atm struct {
+	banknotes map[int]int
 }
 
-func NewAtm(banknotes map[int]int) *Atm {
-	return &Atm{
-		Banknotes: banknotes,
+func newAtm(banknotes map[int]int) *atm {
+	return &atm{
+		banknotes: banknotes,
 	}
+}
+
+func (a *atm) getBanknotes() map[int]int {
+	return a.banknotes
 }

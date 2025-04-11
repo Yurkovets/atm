@@ -15,10 +15,6 @@ var banknotes = map[int]int{
 	1000: 5,
 }
 
-func getBanknotes() *Atm {
-	return NewAtm(banknotes)
-}
-
 func changeBanknotesAmount(cashIssued map[int]int) {
 	for denomination, amount := range cashIssued {
 		banknotes[denomination] -= amount
