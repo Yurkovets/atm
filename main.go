@@ -4,11 +4,21 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/Yurkovets/atm/atm"
+	atm "github.com/Yurkovets/atm/atm"
 )
 
 func main() {
+
+	var banknotes = map[int]int{
+		5:    20,
+		10:   20,
+		100:  15,
+		200:  15,
+		500:  10,
+		1000: 5,
+	}
 	var input string = ""
+	atm := atm.NewAtm(banknotes)
 	for {
 		fmt.Println("Enter the withdrawal amount: ")
 		fmt.Scanln(&input)
